@@ -1,9 +1,13 @@
-const HomePage = () => {
-  return (
-    <div>
-      <h1 className="text-3xl font-bold underline font-mono">Homepage</h1>
-    </div>
-  );
-};
+import MainTable from '../components/MainTable'
+import { JobRecord } from '../models/models'
 
-export default HomePage;
+const HomePage = () => {
+    var jobRecords: JobRecord[] = []
+
+    // Data fetching process
+    const getJobRecords = () => {}
+
+    return <MainTable jobRecords={jobRecords} />
+}
+
+export default HomePage

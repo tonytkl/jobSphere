@@ -25,7 +25,9 @@ const NavItem = ({ title, link, icon, iconDark, alt }: Props) => {
                         src={isActive ? iconDark : icon}
                         alt={alt}
                     />
-                    <p className="ml-1 hidden text-blue-500 hover:text-blue-700 md:block">
+                    <p
+                        className={`ml-1 hidden text-black hover:text-gray-800 md:block ${isActive ? 'font-bold' : ''}`}
+                    >
                         {title}
                     </p>
                 </>
