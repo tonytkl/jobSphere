@@ -13,9 +13,7 @@ const NavItem = ({ title, link, icon, iconDark, alt }: Props) => {
         <NavLink
             to={link}
             className={({ isActive }) =>
-                `flex rounded border-2 p-2 transition-all ${
-                    isActive ? 'border-black' : 'border-white'
-                } hover:border-black`
+                `flex rounded border-2 border-white p-2 transition-all hover:border-black`
             }
         >
             {({ isActive }) => (
