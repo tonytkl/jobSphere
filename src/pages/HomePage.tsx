@@ -1,5 +1,5 @@
 import MainTable from '../components/MainTable'
-import { JobRecord } from '../models/models'
+import { JobRecord, JobStatus } from '../models/jobModels'
 
 const HomePage = () => {
     var jobRecords: JobRecord[] = []
@@ -8,26 +8,26 @@ const HomePage = () => {
     const getJobRecords = () => {}
 
     // Dummy data
-    // jobRecords = [
-    //     {
-    //         id: 1,
-    //         title: 'Software Engineer',
-    //         company: 'Google',
-    //         status: 'Applied',
-    //     },
-    //     {
-    //         id: 2,
-    //         title: 'Product Manager',
-    //         company: 'Facebook',
-    //         status: 'Interview',
-    //     },
-    //     {
-    //         id: 3,
-    //         title: 'Data Analyst',
-    //         company: 'Amazon',
-    //         status: 'Offer',
-    //     },
-    // ]
+    jobRecords = [
+        {
+            id: 1,
+            title: 'Software Engineer',
+            company: 'Google',
+            status: JobStatus.applied,
+        },
+        {
+            id: 2,
+            title: 'Product Manager',
+            company: 'Facebook',
+            status: JobStatus.interview,
+        },
+        {
+            id: 3,
+            title: 'Data Analyst',
+            company: 'Amazon',
+            status: JobStatus.offer,
+        },
+    ]
 
     return <MainTable jobRecords={jobRecords} />
 }

@@ -1,4 +1,4 @@
-import { JobRecord } from '../models/models'
+import { JobRecord } from '../models/jobModels'
 
 type Props = {
     jobRecords: JobRecord[]
@@ -12,24 +12,27 @@ const MainTable = ({ jobRecords }: Props) => {
                     <thead>
                         <tr>
                             <th className="border-b border-gray-300 py-2 text-lg">
-                                Position
-                            </th>
-                            <th className="border-b border-l border-r border-gray-300 py-2 text-lg">
                                 Company
                             </th>
-                            <th className="border-b border-gray-300 py-2 text-lg">
+                            <th className="border-b border-l border-r border-gray-300 py-2 text-lg">
+                                Title
+                            </th>
+                            <th className="border-b border-l border-r border-gray-300 py-2 text-lg">
                                 Status
+                            </th>
+                            <th className="border-b border-gray-300 py-2 text-lg">
+                                Link
                             </th>
                         </tr>
                     </thead>
                     <tbody>
                         {jobRecords.length === 0 ? (
                             <tr>
-                                <td colSpan={3} className="p-4 text-center">
+                                <td colSpan={4} className="p-4 text-center">
                                     <img
                                         src="https://cdn-icons-png.flaticon.com/512/9841/9841553.png"
                                         alt="no job icon"
-                                        className="mx-auto my-2 w-40 text-center"
+                                        className="mx-auto my-2 w-32 text-center md:w-40"
                                     />
                                     <p className="mb-4">
                                         Seems like you don't have any job
@@ -40,11 +43,27 @@ const MainTable = ({ jobRecords }: Props) => {
                         ) : (
                             jobRecords.map((jobRecord) => (
                                 <tr key={jobRecord.id}>
-                                    <td className="p-2">{jobRecord.title}</td>
+                                    <td className="p-2">{jobRecord.company}</td>
                                     <td className="border-l border-r border-gray-300 p-2">
-                                        {jobRecord.company}
+                                        {jobRecord.title}
                                     </td>
-                                    <td className="p-2">{jobRecord.status}</td>
+                                    <td className="border-l border-r p-2">
+                                        {jobRecord.status}
+                                    </td>
+                                    <td className="p-2">
+                                        {jobRecord.link ? (
+                                            <a
+                                                href={jobRecord.link}
+                                                target="_blank"
+                                                rel="noreferrer"
+                                                className="underline"
+                                            >
+                                                Link
+                                            </a>
+                                        ) : (
+                                            '-'
+                                        )}
+                                    </td>
                                 </tr>
                             ))
                         )}
