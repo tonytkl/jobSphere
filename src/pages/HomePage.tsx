@@ -27,9 +27,94 @@ const HomePage = () => {
             company: 'Amazon',
             status: JobStatus.offer,
         },
+        {
+            id: 4,
+            title: 'Software Engineer',
+            company: 'Microsoft',
+            status: JobStatus.rejected,
+        },
+
+        {
+            id: 5,
+            title: 'Software Engineer',
+            company: 'Google',
+            status: JobStatus.applied,
+        },
+        {
+            id: 6,
+            title: 'Product Manager',
+            company: 'Facebook',
+            status: JobStatus.interview,
+        },
+        {
+            id: 7,
+            title: 'Data Analyst',
+            company: 'Amazon',
+            status: JobStatus.offer,
+        },
+        {
+            id: 8,
+            title: 'Software Engineer',
+            company: 'Microsoft',
+            status: JobStatus.rejected,
+        },
+
+        {
+            id: 9,
+            title: 'Software Engineer',
+            company: 'Google',
+            status: JobStatus.applied,
+        },
+        {
+            id: 10,
+            title: 'Product Manager',
+            company: 'Facebook',
+            status: JobStatus.interview,
+        },
+        {
+            id: 11,
+            title: 'Data Analyst',
+            company: 'Amazon',
+            status: JobStatus.offer,
+        },
+        {
+            id: 12,
+            title: 'Software Engineer',
+            company: 'Microsoft',
+            status: JobStatus.rejected,
+        },
+
+        {
+            id: 13,
+            title: 'Software Engineer',
+            company: 'Google',
+            status: JobStatus.applied,
+        },
+        {
+            id: 14,
+            title: 'Product Manager',
+            company: 'Facebook',
+            status: JobStatus.interview,
+        },
+        {
+            id: 15,
+            title: 'Data Analyst',
+            company: 'Amazon',
+            status: JobStatus.offer,
+        },
+        {
+            id: 16,
+            title: 'Software Engineer',
+            company: 'Microsoft',
+            status: JobStatus.rejected,
+        },
     ]
 
-    return <MainTable jobRecords={jobRecords} />
+    return (
+        <div className="md:px-6">
+            <MainTable jobRecords={jobRecords} />
+        </div>
+    )
 }
 
 export default HomePage
