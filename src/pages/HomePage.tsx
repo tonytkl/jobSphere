@@ -111,7 +111,7 @@ const HomePage = () => {
     ]
 
     return (
-        <div className="md:px-6">
+        <div className="md:px-6 lg:px-20">
             <MainTable jobRecords={jobRecords} />
         </div>
     )
