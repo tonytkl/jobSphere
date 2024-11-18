@@ -1,4 +1,5 @@
-import MainTable from '../components/MainTable'
+import MainTable from '../components/main/MainTable'
+import Button from '../components/reuseable/button'
 import { JobRecord, JobStatus } from '../models/jobModels'
 
 const HomePage = () => {
@@ -128,6 +129,9 @@ const HomePage = () => {
 
     return (
         <div className="md:px-6 lg:px-20">
+            <div className="mr-6 flex justify-end">
+                <Button text="Add record" onClick={() => {}} color='primary' />
+            </div>
             <MainTable jobRecords={jobRecords} />
         </div>
     )

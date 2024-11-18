@@ -17,7 +17,7 @@ const Nabvbar = () => {
                 />
             </Link>
             <div className="grow"></div>
-            <ul className="flex space-x-2 pr-5">
+            <ul className="flex space-x-2">
                 <li>
                     <NavItem
                         title="Home"

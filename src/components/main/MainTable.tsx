@@ -1,4 +1,4 @@
-import { JobRecord } from '../models/jobModels'
+import { JobRecord } from '../../models/jobModels'
 
 type Props = {
     jobRecords: JobRecord[]
@@ -8,7 +8,7 @@ const MainTable = ({ jobRecords }: Props) => {
     return (
         <div className="max-w-full p-4">
             <div className="overflow-x-auto rounded border border-gray-300">
-                <table className="w-full min-w-[400px]">
+                <table className="w-full">
                     <thead className="sticky top-0 z-10">
                         <tr>
                             <th
@@ -62,7 +62,7 @@ const MainTable = ({ jobRecords }: Props) => {
                             jobRecords.map((jobRecord, i) => (
                                 <tr key={jobRecord.id}>
                                     <td
-                                        className={`${i === jobRecords.length - 1 ? '' : 'border-b'} sticky left-0 bg-white p-2 pr-8 text-sm md:pr-2`}
+                                        className={`${i === jobRecords.length - 1 ? '' : 'border-b'} sticky left-0 min-w-24 bg-white p-2 pr-8 text-sm md:pr-2`}
                                     >
                                         {jobRecord.company}
                                     </td>
