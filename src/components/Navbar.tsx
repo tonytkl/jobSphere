@@ -5,10 +5,19 @@ const Nabvbar = () => {
     return (
         <nav className="flex w-full p-3">
             <Link to="/">
-                <img src="logo.png" alt="Job Tracker" className="w-40" />
+                <img
+                    src="full_logo.png"
+                    alt="Job Radar logo"
+                    className="hidden w-40 md:block"
+                />
+                <img
+                    src="icon_logo.png"
+                    alt="Job Radar logo"
+                    className="block w-12 md:hidden"
+                />
             </Link>
             <div className="grow"></div>
-            <ul className="flex space-x-6 pr-5">
+            <ul className="flex space-x-2 pr-5">
                 <li>
                     <NavItem
                         title="Home"

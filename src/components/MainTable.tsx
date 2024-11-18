@@ -31,6 +31,12 @@ const MainTable = ({ jobRecords }: Props) => {
                             </th>
                             <th
                                 scope="col"
+                                className="text-md border-b border-l border-r border-gray-300 bg-gray-200 py-2 pl-2 pr-8 text-left uppercase tracking-wider text-gray-500 md:pr-2"
+                            >
+                                Location
+                            </th>
+                            <th
+                                scope="col"
                                 className="text-md border-b border-gray-300 bg-gray-200 py-2 pl-2 pr-8 text-left uppercase tracking-wider text-gray-500 md:pr-2"
                             >
                                 Link
@@ -56,12 +62,12 @@ const MainTable = ({ jobRecords }: Props) => {
                             jobRecords.map((jobRecord, i) => (
                                 <tr key={jobRecord.id}>
                                     <td
-                                        className={`${i === jobRecords.length - 1 ? '' : 'border-b'} sticky left-0 whitespace-nowrap bg-white p-2 pr-8 text-sm md:pr-2`}
+                                        className={`${i === jobRecords.length - 1 ? '' : 'border-b'} sticky left-0 bg-white p-2 pr-8 text-sm md:pr-2`}
                                     >
                                         {jobRecord.company}
                                     </td>
                                     <td
-                                        className={`${i === jobRecords.length - 1 ? '' : 'border-b'} whitespace-nowrap p-2 pr-8 text-sm md:pr-2`}
+                                        className={`${i === jobRecords.length - 1 ? '' : 'border-b'} p-2 pr-8 text-sm md:pr-2`}
                                     >
                                         {jobRecord.title}
                                     </td>
@@ -69,6 +75,11 @@ const MainTable = ({ jobRecords }: Props) => {
                                         className={`${i === jobRecords.length - 1 ? '' : 'border-b'} p-2 pr-8 text-sm md:pr-2`}
                                     >
                                         {jobRecord.status}
+                                    </td>
+                                    <td
+                                        className={`${i === jobRecords.length - 1 ? '' : 'border-b'} whitespace-nowrap p-2 pr-8 text-sm md:pr-2`}
+                                    >
+                                        {jobRecord.location}
                                     </td>
                                     <td
                                         className={`${i === jobRecords.length - 1 ? '' : 'border-b'} p-2 pr-8 text-sm md:pr-2`}
