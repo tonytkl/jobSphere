@@ -1,5 +1,5 @@
 import { useBool } from '../hooks/useBool'
-import MainTable from '../components/main/MainTable'
+import MainTable from '../components/main/mainTable'
 import Button from '../components/reuseable/button'
 import { JobRecord, JobStatus } from '../models/jobModels'
 import Modal from '../components/reuseable/modal'

@@ -1,4 +1,4 @@
-import NavItem from './NavItem'
+import NavItem from './navItem'
 import { Link } from 'react-router-dom'
 
 const Nabvbar = () => {

@@ -1,7 +1,7 @@
 import { Route, Routes } from 'react-router-dom'
-import HomePage from './pages/HomePage'
-import Dashboard from './pages/Dashboard'
-import Nabvbar from './components/main/Navbar'
+import HomePage from './pages/homePage'
+import Dashboard from './pages/dashboard'
+import Nabvbar from './components/main/navbar'
 
 function App() {
     return (
