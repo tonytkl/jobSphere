@@ -12,7 +12,7 @@ const NavItem = ({ title, link, icon, iconDark, alt }: Props) => {
     return (
         <NavLink
             to={link}
-            className={`hover:border-primary flex rounded border-2 border-white p-2 transition-all`}
+            className={`flex rounded border-2 border-white p-2 transition-all hover:border-primary`}
         >
             {({ isActive }) => (
                 <>
@@ -22,7 +22,7 @@ const NavItem = ({ title, link, icon, iconDark, alt }: Props) => {
                         alt={alt}
                     />
                     <p
-                        className={`ml-1 hidden hover:text-gray-800 md:block ${isActive ? 'text-primary font-bold' : ''}`}
+                        className={`ml-1 hidden hover:text-gray-800 md:block ${isActive ? 'font-bold text-primary' : ''}`}
                     >
                         {title}
                     </p>
