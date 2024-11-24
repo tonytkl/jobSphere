@@ -1,9 +1,12 @@
+import { useBool } from '../hooks/useBool'
 import MainTable from '../components/main/MainTable'
 import Button from '../components/reuseable/button'
 import { JobRecord, JobStatus } from '../models/jobModels'
+import Modal from '../components/reuseable/modal'
 
 const HomePage = () => {
     var jobRecords: JobRecord[] = []
+    const modalState = useBool(false)
 
     // Data fetching process
     const getJobRecords = () => {}
@@ -130,9 +133,39 @@ const HomePage = () => {
     return (
         <div className="md:px-6 lg:px-20">
             <div className="mr-6 flex justify-end">
-                <Button text="Add record" onClick={() => {}} color='primary' />
+                <Button
+                    text="Add record"
+                    onClick={() => {
+                        modalState.set(true)
+                    }}
+                    color="primary"
+                />
             </div>
+
             <MainTable jobRecords={jobRecords} />
+
+            {modalState.val && (
+                <Modal
+                    title="User Terms asd as dsa s"
+                    isShown={modalState.val}
+                    setHide={() => modalState.set(false)}
+                    buttonText={['Close', 'Alert']}
+                    buttonAction={[
+                        () => modalState.set(false),
+                        () => alert('Button clicked'),
+                    ]}
+                >
+                    <div id="content-2a" className="flex-1 overflow-auto">
+                        <p>
+                            A Terms and Conditions agreement is where you let
+                            the public know the terms, rules and guidelines for
+                            using your website or mobile app. They include
+                            topics such as acceptable use, restricted behavior
+                            and limitations of liability
+                        </p>
+                    </div>
+                </Modal>
+            )}
         </div>
     )
 }

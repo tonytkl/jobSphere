@@ -1,10 +1,26 @@
 import React, { useRef, useEffect } from 'react'
 import ReactDOM from 'react-dom'
-import { useBool } from '../../hooks/useBool'
+import Button from './button'
 
-export default function ModalActionButton() {
-    const showStatus = useBool(false)
+type Props = {
+    children: React.ReactNode
+    isShown: boolean
+    setHide: () => void
+    title: string
+    buttonText?: string[]
+    buttonAction?: (() => void)[]
+}
 
+// Logic of modal is based on WindUI.
+// Details: https://wind-ui.com/components/modals/
+const Modal = ({
+    children,
+    isShown,
+    setHide,
+    title,
+    buttonText,
+    buttonAction,
+}: Props) => {
     const wrapperRef = useRef<HTMLDivElement>(null)
 
     useEffect(() => {
@@ -13,20 +29,20 @@ export default function ModalActionButton() {
                 wrapperRef.current &&
                 !wrapperRef.current.contains(event.target as Node)
             ) {
-                showStatus.set(false)
+                setHide()
             }
         }
         document.addEventListener('mousedown', handleClickOutside)
         return () => {
             document.removeEventListener('mousedown', handleClickOutside)
         }
-    }, [wrapperRef, showStatus])
+    }, [wrapperRef, isShown, setHide])
 
     useEffect(() => {
         let html = document.querySelector('html')
         const modal = document.querySelector('#modal') // select the modal by it's id
         if (html && modal) {
-            if (showStatus.val && html) {
+            if (isShown && html) {
                 html.style.overflowY = 'hidden'
 
                 const focusableElements =
@@ -45,7 +61,7 @@ export default function ModalActionButton() {
 
                 document.addEventListener('keydown', function (e) {
                     if (e.key === 'Escape') {
-                        showStatus.set(false)
+                        setHide()
                     }
 
                     let isTabPressed = e.key === 'Tab'
@@ -75,18 +91,11 @@ export default function ModalActionButton() {
                 html.style.overflowY = 'visible'
             }
         }
-    }, [showStatus])
+    }, [isShown, setHide])
 
     return (
         <>
-            <button
-                onClick={() => showStatus.set(true)}
-                className="inline-flex h-10 items-center justify-center gap-2 whitespace-nowrap rounded bg-emerald-500 px-5 text-sm font-medium tracking-wide text-white transition duration-300 hover:bg-emerald-600 focus:bg-emerald-700 focus-visible:outline-none disabled:cursor-not-allowed disabled:border-emerald-300 disabled:bg-emerald-300 disabled:shadow-none"
-            >
-                <span>Open Modal</span>
-            </button>
-
-            {showStatus.val && typeof document !== 'undefined'
+            {isShown && typeof document !== 'undefined'
                 ? ReactDOM.createPortal(
                       <div
                           className="fixed left-0 top-0 z-20 flex h-screen w-screen items-center justify-center bg-slate-300/20 backdrop-blur-sm"
@@ -108,10 +117,10 @@ export default function ModalActionButton() {
                                   className="flex items-center gap-4"
                               >
                                   <h3 className="flex-1 text-xl font-medium text-slate-700">
-                                      User Terms
+                                      {title}
                                   </h3>
                                   <button
-                                      onClick={() => showStatus.set(false)}
+                                      onClick={() => setHide()}
                                       className="inline-flex h-10 items-center justify-center gap-2 justify-self-center whitespace-nowrap rounded-full px-5 text-sm font-medium tracking-wide text-emerald-500 transition duration-300 hover:bg-emerald-100 hover:text-emerald-600 focus:bg-emerald-200 focus:text-emerald-700 focus-visible:outline-none disabled:cursor-not-allowed disabled:text-emerald-300 disabled:shadow-none disabled:hover:bg-transparent"
                                       aria-label="close dialog"
                                   >
@@ -143,26 +152,22 @@ export default function ModalActionButton() {
                                   </button>
                               </header>
                               {/*        <!-- Modal body --> */}
-                              <div
-                                  id="content-2a"
-                                  className="flex-1 overflow-auto"
-                              >
-                                  <p>
-                                      A Terms and Conditions agreement is where
-                                      you let the public know the terms, rules
-                                      and guidelines for using your website or
-                                      mobile app. They include topics such as
-                                      acceptable use, restricted behavior and
-                                      limitations of liability
-                                  </p>
-                              </div>
+                              {children}
                               {/*        <!-- Modal actions --> */}
-                              <div className="flex justify-end gap-2">
-                                  {/*            <!-- base basic button --> */}
-                                  <button className="inline-flex h-10 items-center justify-center gap-2 whitespace-nowrap rounded bg-emerald-500 px-5 text-sm font-medium tracking-wide text-white transition duration-300 hover:bg-emerald-600 focus:bg-emerald-700 focus-visible:outline-none disabled:cursor-not-allowed disabled:border-emerald-300 disabled:bg-emerald-300 disabled:shadow-none">
-                                      <span>Continue</span>
-                                  </button>
-                              </div>
+                              {buttonText &&
+                                  buttonAction &&
+                                  buttonText?.length > 0 && (
+                                      <div className="flex justify-end gap-2">
+                                          {buttonText.map((text, i) => (
+                                              <Button
+                                                  key={i}
+                                                  text={text}
+                                                  onClick={buttonAction[i]}
+                                                  color="primary"
+                                              />
+                                          ))}
+                                      </div>
+                                  )}
                           </div>
                       </div>,
                       document.body
@@ -171,3 +176,5 @@ export default function ModalActionButton() {
         </>
     )
 }
+
+export default Modal
