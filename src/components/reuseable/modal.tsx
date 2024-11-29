@@ -1,25 +1,24 @@
 import React, { useRef, useEffect } from 'react'
 import ReactDOM from 'react-dom'
-import Button from './button'
 
 type Props = {
     children: React.ReactNode
-    isShown: boolean
+    isOpen: boolean
     setHide: () => void
     title: string
-    buttonText?: string[]
-    buttonAction?: (() => void)[]
+    // buttonText?: string[]
+    // buttonAction?: (() => void)[]
 }
 
 // Logic of modal is based on WindUI.
 // Details: https://wind-ui.com/components/modals/
 const Modal = ({
     children,
-    isShown,
+    isOpen,
     setHide,
     title,
-    buttonText,
-    buttonAction,
+    // buttonText,
+    // buttonAction,
 }: Props) => {
     const wrapperRef = useRef<HTMLDivElement>(null)
 
@@ -36,13 +35,13 @@ const Modal = ({
         return () => {
             document.removeEventListener('mousedown', handleClickOutside)
         }
-    }, [wrapperRef, isShown, setHide])
+    }, [wrapperRef, isOpen, setHide])
 
     useEffect(() => {
-        let html = document.querySelector('html')
+        const html = document.querySelector('html')
         const modal = document.querySelector('#modal') // select the modal by it's id
         if (html && modal) {
-            if (isShown && html) {
+            if (isOpen && html) {
                 html.style.overflowY = 'hidden'
 
                 const focusableElements =
@@ -64,7 +63,7 @@ const Modal = ({
                         setHide()
                     }
 
-                    let isTabPressed = e.key === 'Tab'
+                    const isTabPressed = e.key === 'Tab'
 
                     if (!isTabPressed) {
                         return
@@ -91,11 +90,11 @@ const Modal = ({
                 html.style.overflowY = 'visible'
             }
         }
-    }, [isShown, setHide])
+    }, [isOpen, setHide])
 
     return (
         <>
-            {isShown && typeof document !== 'undefined'
+            {isOpen && typeof document !== 'undefined'
                 ? ReactDOM.createPortal(
                       <div
                           className="fixed left-0 top-0 z-20 flex h-screen w-screen items-center justify-center bg-slate-300/20 backdrop-blur-sm"
@@ -154,20 +153,11 @@ const Modal = ({
                               {/*        <!-- Modal body --> */}
                               {children}
                               {/*        <!-- Modal actions --> */}
-                              {buttonText &&
+                              {/* {buttonText &&
                                   buttonAction &&
                                   buttonText?.length > 0 && (
-                                      <div className="flex justify-end gap-2">
-                                          {buttonText.map((text, i) => (
-                                              <Button
-                                                  key={i}
-                                                  text={text}
-                                                  onClick={buttonAction[i]}
-                                                  color="primary"
-                                              />
-                                          ))}
-                                      </div>
-                                  )}
+                                      
+                                  )} */}
                           </div>
                       </div>,
                       document.body

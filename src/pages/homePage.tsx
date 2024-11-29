@@ -1,15 +1,16 @@
+import React from 'react'
 import { useBool } from '../hooks/useBool'
 import MainTable from '../components/main/mainTable'
 import Button from '../components/reuseable/button'
 import { JobRecord, JobStatus } from '../models/jobModels'
-import Modal from '../components/reuseable/modal'
+import JobModal from '../components/main/jobModal'
 
 const HomePage = () => {
-    var jobRecords: JobRecord[] = []
+    let jobRecords: JobRecord[] = []
     const modalState = useBool(false)
 
     // Data fetching process
-    const getJobRecords = () => {}
+    // const getJobRecords = () => {}
 
     // Dummy data
     jobRecords = [
@@ -145,26 +146,11 @@ const HomePage = () => {
             <MainTable jobRecords={jobRecords} />
 
             {modalState.val && (
-                <Modal
-                    title="User Terms asd as dsa s"
-                    isShown={modalState.val}
+                <JobModal
+                    isOpen={modalState.val}
                     setHide={() => modalState.set(false)}
-                    buttonText={['Close', 'Alert']}
-                    buttonAction={[
-                        () => modalState.set(false),
-                        () => alert('Button clicked'),
-                    ]}
-                >
-                    <div id="content-2a" className="flex-1 overflow-auto">
-                        <p>
-                            A Terms and Conditions agreement is where you let
-                            the public know the terms, rules and guidelines for
-                            using your website or mobile app. They include
-                            topics such as acceptable use, restricted behavior
-                            and limitations of liability
-                        </p>
-                    </div>
-                </Modal>
+                    // job={jobRecords[2]}
+                />
             )}
         </div>
     )
